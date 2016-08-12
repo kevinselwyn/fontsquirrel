@@ -1,0 +1,59 @@
+#!/usr/bin/python
+"""fontsquirrel __init__"""
+
+import argparse
+import json
+from fontsquirrel import FontSquirrel
+
+def logo():
+    """FontSquirrel logo"""
+
+    return '''______          _  ,;;:;,
+|  ___|        | |   ;;;;;
+| |_ ___  _ __ | |_ ,:;;:;    ,\'=.
+|  _/ _ \\| \'_ \\| __|;:;:;\' .=" ,\'_\\
+| || (_) | | | | |_ \':;:;,/  ,__:=@
+\\_______/|_| |_|\\___ \';;:;  =./)_  _
+/  ___|           (_)  `"=\\_  )_"`| |
+\\ `--.  __ _ _   _ _ _ __ _ __ ___| |
+ `--. \\/ _` | | | | | \'__| \'__/ _ | |
+/\\__/ | (_| | |_| | | |  | | |  __| |
+\\____/ \\__, |\\__,_|_|_|  |_|  \\___|_|
+          | |
+          |_|\n'''
+
+class FontSquirrelHelpFormatter(argparse.HelpFormatter):
+    """Help formatter"""
+
+    def add_usage(self, usage, actions, groups, prefix=None):
+        """Usage text"""
+
+        if prefix is None:
+            print logo()
+            prefix = 'Usage: '
+
+        return super(FontSquirrelHelpFormatter, self).add_usage(usage, actions, groups, prefix)
+
+def main():
+    """Main function"""
+
+    parser = argparse.ArgumentParser(
+        prog='fontsquirrel',
+        description='Font Squirrel CLI',
+        formatter_class=lambda prog: FontSquirrelHelpFormatter(prog, max_help_position=32)
+    )
+
+    parser.add_argument('-i', '--input', dest='input', type=str, default=None, required=True, help='input filename')
+    parser.add_argument('-o', '--output', dest='output', type=str, default=None, required=False, help='output filename')
+    parser.add_argument('-l', '--level', dest='level', type=str, default='basic', required=False, help='optimization level')
+    parser.add_argument('-c', '--config', dest='config', type=str, default=None, required=False, help='configuration')
+
+    args = parser.parse_args()
+
+    if args.config:
+        args.config = json.loads(args.config)
+
+    FontSquirrel(args.input, args.output, args.level, args.config)
+
+if __name__ == '__main__':
+    main()
