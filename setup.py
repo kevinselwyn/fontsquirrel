@@ -12,7 +12,7 @@ if __name__ == '__main__':
         packages=['fontsquirrel'],
         license='GPLv3',
         install_requires=[
-            'requests==2.9.1',
+            'requests==2.20.0',
             'progressbar==2.3'
         ],
         scripts=['bin/fontsquirrel']

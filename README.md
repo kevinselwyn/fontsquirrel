@@ -1,14 +1,14 @@
-#fontsquirrel
+# fontsquirrel
 
 Font Squirrel CLI
 
-##Installation
+## Installation
 
 ```
 sudo python setup.py install
 ```
 
-##Usage
+## Usage
 
 ```
 ______          _  ,;;:;,
@@ -37,6 +37,6 @@ optional arguments:
   -c CONFIG, --config CONFIG  configuration
 ```
 
-##Explanation
+## Explanation
 
 `fontsquirrel` is a command-line interface for [fontsquirrel.com](https://www.fontsquirrel.com). For best results, upload a `.ttf` font.
